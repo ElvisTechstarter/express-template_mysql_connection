@@ -1,9 +1,9 @@
 {
   "info": {
-    "_postman_id": "cf32ae78-80a5-4f9d-beea-e8cebf500b56",
+    "_postman_id": "2e268e4d-4552-4dca-b3a5-7572a36e4db0",
     "name": "AWS-23-10",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "31079502"
+    "_exporter_id": "31478689"
   },
   "item": [
     {
@@ -22,16 +22,43 @@
       "response": []
     },
     {
-      "name": "Todo-ById",
+      "name": "By todoId",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:5050/v1/todos/all",
+          "raw": "http://localhost:5050/v1/todos/byid?todoId=1",
           "protocol": "http",
           "host": ["localhost"],
           "port": "5050",
-          "path": ["v1", "todos", "all"]
+          "path": ["v1", "todos", "byid"],
+          "query": [
+            {
+              "key": "todoId",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "By userId",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5050/v1/todos/byuserid?userId=1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5050",
+          "path": ["v1", "todos", "byuserid"],
+          "query": [
+            {
+              "key": "userId",
+              "value": "1"
+            }
+          ]
         }
       },
       "response": []
@@ -43,7 +70,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"newTask\": \"Milch kaufen\",\n    \"newIsDone\": true,\n    \"newDueDate\": \"2024-11-10\",\n    \"newUserId\": 1\n}",
+          "raw": "{\n    \"newTask\": \"Einkaufen gehen\",\n    \"newIsDone\": false,\n    \"newDueDate\": \"2024-11-10\",\n    \"newUserId\": 1\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -56,6 +83,30 @@
           "host": ["localhost"],
           "port": "5050",
           "path": ["v1", "todos", "create"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Mark done",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"todoId\": 1,\n    \"newIsDone\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5050/v1/todos/mark",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5050",
+          "path": ["v1", "todos", "mark"]
         }
       },
       "response": []
@@ -63,11 +114,11 @@
     {
       "name": "Update-Todo",
       "request": {
-        "method": "POST",
+        "method": "PUT",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"newTask\": \"Milch kaufen\",\n    \"newIsDone\": true,\n    \"newDueDate\": \"2024-11-10\",\n    \"newUserId\": 1\n}",
+          "raw": "{\n    \"todoId\": 1,\n    \"newTask\": \"Trinken\",\n    \"newIsDone\": true,\n    \"newDueDate\": \"2025-10-10\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -75,11 +126,11 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5050/v1/todos/create",
+          "raw": "http://localhost:5050/v1/todos/update",
           "protocol": "http",
           "host": ["localhost"],
           "port": "5050",
-          "path": ["v1", "todos", "create"]
+          "path": ["v1", "todos", "update"]
         }
       },
       "response": []
@@ -87,11 +138,11 @@
     {
       "name": "Delete-Todo",
       "request": {
-        "method": "POST",
+        "method": "DELETE",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"newTask\": \"Milch kaufen\",\n    \"newIsDone\": true,\n    \"newDueDate\": \"2024-11-10\",\n    \"newUserId\": 1\n}",
+          "raw": "{\n\"todoId\":1\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -99,11 +150,11 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5050/v1/todos/create",
+          "raw": "http://localhost:5050/v1/todos/delete",
           "protocol": "http",
           "host": ["localhost"],
           "port": "5050",
-          "path": ["v1", "todos", "create"]
+          "path": ["v1", "todos", "delete"]
         }
       },
       "response": []
